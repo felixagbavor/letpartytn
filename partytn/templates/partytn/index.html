@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+{% load static %}
+
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>FindAparty</title>
+    {% include 'partytn/base/css.html' %}
+    {% include 'partytn/base/js.html' %}
+    {% include 'partytn/base/bootstrap_defaults.html' %}
+    <link rel="stylesheet" type= "text/css" href="{% static 'partytn/style.css' %}" />
+
+    <style>
+    </style>
+
+    <script>
+    {% block jquery %}
+
+    // Make ajax calls periodically. 
+    $.ajax({
+    method: 'GET',
+    url: 'api/party',
+
+    success: function(data){
+        //get data about parties here
+        var numOfParties = data.numOfParties
+        console.log(numOfParties) 
+        
+        },
+    error: function(error_data){
+        console.log("error")
+        console.log(error_data)
+
+        },
+    });
+
+
+    {% endblock %}
+    </script>
+
+</head>
+
+<body>
+
+    <div class="container-fluid">
+        <nav class="navbar navbar-dark bg-primary navbar-fixed-top">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand bg-primary text-light rounded" href="{% url 'index' %}"><strong>LetPartytn</strong></a>
+                    <span class="navbar-nav navbar-center bg-primary rounded" href="#" id='clock' style="padding:1em;"></span>
+                </div>
+            </div>
+        </nav>
+
+        <div class="row content">
+            <div class="col-sm-12">
+                <div class="row">
+                    <div class="well">
+                        <header><b>NB:</b> Parties displayed are mainly around/on Drexel U and UPenn.  Know of any party not listed? text 2677873011 with party details to get a <strong>$10 dollar gift card*</strong></header>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <h3 style="text-align:center;font-size:5.5rem;color:rgb(23,255,10);">Parties tn</h3>
+                    <table width="100%" style="margin-left:30px;">
+                        <tr style="font-size:2.5rem;color:rgb(255,250,90);">
+                            <th>Start</th>
+                            <th>till</th> 
+                            <th>Where at</th>
+                            <th>Rate</th>
+                            <th>Status</th>
+                        </tr>
+                        <tr style="font-size:1.7rem;color:rgb(25,250,90);">
+                            <td>10:00pm</td>
+                            <td>till yo' mama calls</td> 
+                            <td>34th st. & Market</td>
+                            <td>Free bitches</td>
+                            <td style="color:rgb(225,0,0);">Closed down due to cops</td>
+                        </tr>
+                        <br>
+                        <tr style="font-size:1.7rem;color:rgb(25,250,90);">
+                            <td>08:00pm</td>
+                            <td>04:00am</td> 
+                            <td>34th st. & Market</td>
+                            <td>Free until 11pm. $10 after 11pm</td>
+                            <td>Going strong</td>
+                        </tr>
+                    </table>
+
+                    <br>
+
+                    <h3 style="text-align:center;font-size:4.5rem;color:rgb(23,255,10);">Parties tmrw</h3>
+                    <p style="text-align:center;color:rgb(20,90,180);font-size:2rem;">Check back later to see new parties here<p>
+
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+</body>
+</html>
